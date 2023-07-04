@@ -16,5 +16,7 @@ class Environmental_Activities extends Model
         'latlang',
         'lat',
         'lang',
+        'acti_time',
+        'photo'
     ];
 }

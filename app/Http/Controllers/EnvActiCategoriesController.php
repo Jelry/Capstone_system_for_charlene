@@ -19,7 +19,7 @@ class EnvActiCategoriesController extends Controller
       
         return view('admin.categories',[
             'env_act_category' =>DB::table('env_acti_categories')
-            ->where('user_id','=',Auth::id())->get(),
+            ->where('user_id','=',Auth::id())->paginate(5),
    ]);
     }
 

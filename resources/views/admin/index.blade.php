@@ -22,7 +22,7 @@
                      <a href="{{ route('activities')}}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-100 ">
                         <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                         <span class="flex-1 ml-3 whitespace-nowrap">Activities</span>
-                        <span class="inline-flex justify-center items-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span>
+                        <!-- <span class="inline-flex justify-center items-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span> -->
                      </a>
                   </li>
                   <li>
@@ -39,9 +39,15 @@
                      </a>
                   </li> -->
                   <li>
-                     <a href="{{route('users')}}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-100 ">
+                     <a href="/users" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-100 ">
                         <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                         <span class="flex-1 ml-3 whitespace-nowrap">Volunteers</span>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="{{route('logs')}}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-100 ">
+                        <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"></path></svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Registration Logs</span>
                      </a>
                   </li>
                   <!-- <li>
@@ -117,25 +123,25 @@
                     </div>
                     <div>
                      <a
-                     href="{{route('category.index')}}"
+                     href="{{route('activities')}}"
                      class="group flex flex-col justify-between rounded-sm bg-white p-8 shadow-xl transition-shadow hover:shadow-lg"
                    >
                      <div>
                        <h3 class="text-5xl font-bold text-indigo-600"> 
-                         @if($env_act_category->count()>1000)
+                         @if($status->count()>1000)
                         1000+
                         @else
-                        {{$env_act_category->count()}}
+                        {{$status->count()}}
                         @endif</h3>
                        <div class="mt-4 border-t-2 border-indigo-100 pt-2">
                          <p class="text-sm font-medium uppercase tracking-widest text-gray-500">
-                          Categories
+                          Completed Activities
                          </p>
                        </div>
                      </div>
                    
                      <div class="mt-16 inline-flex items-center text-indigo-600">
-                       <p class="text-lg font-medium">View Categories</p>
+                       <p class="text-lg font-medium">View all activities</p>
                    
                        <svg
                          xmlns="http://www.w3.org/2000/svg"
@@ -157,7 +163,7 @@
                     </div>
                     <div>
                      <a
-                     href=""
+                     href="/users"
                      class="group flex flex-col justify-between rounded-sm bg-white p-8 shadow-xl transition-shadow hover:shadow-lg"
                    >
                      <div>
@@ -190,7 +196,17 @@
                    </a>
                    
                     </div>
+                    
+                    
                 </div>
+                <div class="mx-auto w-full overflow-hidden rounded shadow p-4">
+  <canvas
+    data-te-chart="line"
+    data-te-dataset-label="Awaiting data"
+    data-te-labels="['January', 'February' , 'March' , 'April' , 'May' , 'June' , 'July', 'August','September','October','November','December']"
+    data-te-dataset-data="[2112, 2343, 2545, 3423, 2365, 1985, 987, 2545, 3423, 2365, 1985, 987]">
+  </canvas>
+</div>
             </div>
         </div>
     </div>

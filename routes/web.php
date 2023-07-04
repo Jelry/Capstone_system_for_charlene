@@ -25,18 +25,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-
+Route::get('/',[AdminController::class,'welcome'])->name('welcome');
+Route::get('view-all-activities-page',[AdminController::class,'guestViewAll'])->name('guest_view_all');
 Route::get('/admin',[AdminController::class,'index'])->middleware(['auth','verified','isAdmin'])->name('admin');
 Route::get('/activities',[AdminController::class,'activities'])->middleware(['auth','verified','isAdmin'])->name('activities');
+Route::post('/change_status',[AdminController::class,'status_change'])->middleware(['auth','verified','isAdmin'])->name('activities.status');
 
 Route::get('/inbox',[AdminController::class,'inbox'])->middleware(['auth','verified','isAdmin'])->name('inbox');
 Route::get('/users',[AdminController::class,'users'])->middleware(['auth','verified','isAdmin'])->name('users');
 Route::get('/logs',[AdminController::class,'logs'])->middleware(['auth','verified','isAdmin'])->name('logs');
-Route::post('update/{id}',[EnvironmentalActivitiesController::class,'create'])->middleware(['auth','verified','isAdmin'])->name('update_activity');
+Route::post('update',[EnvironmentalActivitiesController::class,'create'])->middleware(['auth','verified','isAdmin'])->name('update_activity');
 Route::post('acti_delete/{id}',[EnvironmentalActivitiesController::class,'acti_delete'])->middleware(['auth','verified','isAdmin'])->name('delete_activity');
 Route::post('categ_delete/{id}',[EnvActiCategoriesController::class,'categ_delete'])->middleware(['auth','verified','isAdmin'])->name('delete_category');
 Route::get('activity_add',[activity_add::class,'index'])->middleware(['auth','verified','isAdmin'])->name('activity_add');
@@ -64,6 +66,7 @@ Route::middleware('auth')->group(function () {
 //all volunteer related routes below
 
 Route::get('/dashboard',[HomeController::class,'index'])->middleware(['auth','verified'])->name('dashboard');
+Route::get('/completed-events',[HomeController::class,'completedEvents'])->middleware(['auth','verified'])->name('completed_events');
 Route::get('/view_activity/{id}',[VolunteerActivityViewController::class,'index'])->middleware(['auth','verified','isVolunteer']);
 
 Route::resource('join',JoinActivityController::class)

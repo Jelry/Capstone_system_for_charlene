@@ -1,0 +1,118 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
+            {{ __('Completed Events') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="p-6 text-gray-900 grid grid-cols-1 lg:grid-cols-5 gap-3">
+           <div class="col-span-1">
+          </div>        
+        <div class="col-span-3">
+          @foreach($env_act as $item)
+                @foreach($status as $s)
+                  @if($item->id == $s->acti_id)
+                    @if($s->status == "completed")
+                    <div
+  
+  class="relative block overflow-hidden rounded-lg border border-gray-100 p-8 bg-white shadow mb-4"
+>
+
+  {{-- <span
+    class="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
+  ></span> --}}
+
+  <div class="justify-between sm:flex">
+    <div>
+      <h3 class="text-xl font-bold text-gray-900">
+       {{$item->act_name}}
+      </h3>
+
+      <p class="mt-1 text-xs font-medium text-teal-600">Event Date: {{$item->act_date}}</p>
+      <p class="mt-1 text-xs font-medium text-teal-600">Event Time: {{$item->acti_time}}</p>
+    </div>
+
+    <div class="ml-3 hidden flex-shrink-0 sm:block">
+      <!-- <img
+        alt="error image"
+        src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+        class="h-16 w-16 rounded-lg object-cover shadow-sm"
+      /> -->
+    </div>
+  </div>
+
+  <div class="mt-4 sm:pr-8">
+    <p class="text-sm text-gray-500">
+      {{$item->act_desc}}
+    </p>
+  </div>
+
+  <dl class="mt-6 flex grid grid-cols-5">
+   
+   
+      <div class="flex flex-col-reverse">
+        <dt class="text-sm font-medium text-gray-600">Status</dt>
+        <dd class="text-xs text-gray-500">
+          @foreach($status as $s)
+            @if($item->id == $s->acti_id)
+            {{$s->status}}
+            @endif
+          @endforeach
+        </dd>
+      </div>
+  
+      <div class="ml-3 flex flex-col-reverse sm:ml-6">
+        <dt class="text-sm font-medium text-green-700">Volunteers</dt>
+        <dd class="text-xs text-gray-500">
+          @php
+           $v_count=0;   
+          @endphp
+          @foreach ($volunteers as $v)
+          @if($v->activity_id==$item->id)
+          @php
+          $v_count++;
+          @endphp
+          @endif
+          @endforeach
+          {{$v_count}}
+        </dd>
+      </div>
+      <div class="col-span-3 flex justify-end">
+        <a
+        class="group relative inline-block overflow-hidden border border-indigo-600 px-4 py-1 focus:outline-none focus:ring"
+        href="/view_activity/{{$item->id}}"
+      >
+        <span
+          class="absolute inset-y-0 left-0 w-[2px] bg-indigo-600 transition-all group-hover:w-full group-active:bg-indigo-500"
+        ></span>
+      
+        <span
+          class="relative text-sm font-medium text-indigo-600 transition-colors group-hover:text-white"
+        >
+          View
+        </span>
+      </a>
+      </div>
+    
+  </dl>
+  
+</div>
+                    @endif
+                  @endif
+                @endforeach
+
+
+
+
+          @endforeach
+          <div>{{$env_act->links()}}</div>
+        </div>
+        <div class="col-span-1">
+        </div>
+    </div>
+   
+    </div>
+  
+
+</x-app-layout>

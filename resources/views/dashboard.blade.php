@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-            {{ __('Latest Activities') }}
+            {{ __('Latest Events') }}
         </h2>
     </x-slot>
 
@@ -11,11 +11,14 @@
           </div>        
         <div class="col-span-3">
           @foreach($env_act as $item)
-
-<div
+                @foreach($status as $s)
+                  @if($item->id == $s->acti_id)
+                    @if($s->status == "uncompleted")
+                    <div
   
   class="relative block overflow-hidden rounded-lg border border-gray-100 p-8 bg-white shadow mb-4"
 >
+
   {{-- <span
     class="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"
   ></span> --}}
@@ -27,14 +30,15 @@
       </h3>
 
       <p class="mt-1 text-xs font-medium text-teal-600">Event Date: {{$item->act_date}}</p>
+      <p class="mt-1 text-xs font-medium text-teal-600">Event Time: {{$item->acti_time}}</p>
     </div>
 
     <div class="ml-3 hidden flex-shrink-0 sm:block">
-      <img
+      <!-- <img
         alt="error image"
         src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
         class="h-16 w-16 rounded-lg object-cover shadow-sm"
-      />
+      /> -->
     </div>
   </div>
 
@@ -48,8 +52,14 @@
    
    
       <div class="flex flex-col-reverse">
-        <dt class="text-sm font-medium text-gray-600">Published</dt>
-        <dd class="text-xs text-gray-500">{{ Carbon\Carbon::parse($item->created_at)->format('Y-m-d') }}</dd>
+        <dt class="text-sm font-medium text-gray-600">Status</dt>
+        <dd class="text-xs text-gray-500">
+          @foreach($status as $s)
+            @if($item->id == $s->acti_id)
+            {{$s->status}}
+            @endif
+          @endforeach
+        </dd>
       </div>
   
       <div class="ml-3 flex flex-col-reverse sm:ml-6">
@@ -88,9 +98,14 @@
   </dl>
   
 </div>
+                    @endif
+                  @endif
+                @endforeach
 
 
-@endforeach
+
+
+          @endforeach
 
         </div>
         <div class="col-span-1">

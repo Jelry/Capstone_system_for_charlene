@@ -5,10 +5,18 @@
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
         </x-slot>
-            <h1 class="text-center text-white m-2"> Create your account</h1>
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
 
+        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+            @csrf
+            <!-- photo -->
+            <div>
+                <x-input-label for="photo" :value="__('Selfie with valid ID')" />
+                <x-text-input id="photo" class="block mt-1 w-full" type="file" name="photo" required autofocus accept="image/*" autocomplete="photo" />
+                <x-input-error :messages="$errors->get('photo')" class="mt-2" />
+            </div>
+            <br>
+            <hr>
+            <br>
             <!-- Name -->
             <div>
                 <x-input-label for="name" :value="__('Name')" />
@@ -47,7 +55,7 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+                <a class="underline text-sm text-gray-600 hover:text-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 

@@ -36,6 +36,10 @@
                     @if(Auth::user()->role == 0)
                     <x-nav-link :href="route('join.index')" :active="request()->routeIs('join.index')">
                         {{ __('My Bookings') }}
+
+                    </x-nav-link>
+                    <x-nav-link :href="route('completed_events')" :active="request()->routeIs('completed_events')">
+                        {{ __('Completed Events') }}
                     </x-nav-link>
                     @endif
                 </div>
@@ -96,6 +100,9 @@
             @if(Auth::user()->role == 0)
             <x-responsive-nav-link :href="route('join.index')" :active="request()->routeIs('join.index')">
                 {{ __('My Bookings') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('completed_events')" :active="request()->routeIs('completed_events')">
+                {{ __('Completed Events') }}
             </x-responsive-nav-link>
             @endif
         </div>

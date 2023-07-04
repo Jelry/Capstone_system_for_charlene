@@ -5,11 +5,11 @@
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
         </x-slot>
-        <h1 class="text-white text-center">Login</h1>
+
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}" class="bg-white">
             @csrf
 
             <!-- Email Address -->
@@ -22,6 +22,7 @@
             <!-- Password -->
             <div class="mt-4">
                 <x-input-label for="password" :value="__('Password')" />
+
                 <x-text-input id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
@@ -39,15 +40,15 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
+            <a class="underline text-sm text-gray-600 hover:text-gray-500 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
                         {{ __("Don't have an account?") }}
                     </a>
                     <strong class="opacity-0">-</strong>
-                @if (Route::has('password.request'))
+                <!-- @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
-                @endif
+                @endif -->
 
                 <x-primary-button class="ml-3">
                     {{ __('Log in') }}

@@ -22,7 +22,7 @@
                      <a href="{{ route('activities')}}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-100 ">
                         <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                         <span class="flex-1 ml-3 whitespace-nowrap">Activities</span>
-                        <span class="inline-flex justify-center items-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span>
+                        <!-- <span class="inline-flex justify-center items-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span> -->
                      </a>
                   </li>
                   <li>
@@ -42,6 +42,12 @@
                      <a href="{{route('users')}}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-100 ">
                         <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                         <span class="flex-1 ml-3 whitespace-nowrap">Volunteers</span>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="{{route('logs')}}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-100 ">
+                        <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"></path></svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Registration Logs</span>
                      </a>
                   </li>
                   <!-- <li>
@@ -73,7 +79,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 h-full">
             <div  class="bg-white overflow-hidden shadow-sm sm:rounded-lg h-full p-10">
                 <h3 class="mb-4 text-xl font-medium text-gray-900 ">CREATE ENVIRONMENTAL ACTIVITY</h3>
-                <form class="space-y-6" method="POST" action="{{ route('activity.store') }}">
+                <form class="space-y-6" method="POST" action="{{ route('activity.store') }}" enctype="multipart/form-data">
                     @csrf
                    
                        <div>
@@ -81,17 +87,26 @@
                            <input type="text" name="activity_name" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="name of environmental activity" required>
                        </div>
                        <div>
-                          <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Date</label>
-                          {{-- <input type="Date"  id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="date of environmental activity" required> --}}
+                          <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Date(start to end of event)</label>
+                      
                           
 <div class="relative max-w-sm">
-   <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+   <!-- <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
      <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-   </div>
-   <input datepicker type="text" name="activity_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Select activity date" required>
+   </div> -->
+   <input type="date" name="activity_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Select activity date" required>
+   to
+   <input type="date" name="activity_date_end" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Select activity date" required>
  </div>
- 
+ <!-- start of new date picker -->
+
+
+ <!-- end of new date picker -->
                       </div>
+                      <div class="max-w-sm">
+                           <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Time</label>
+                           <input type="time" name="activity_time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Select activity time" required>
+                       </div>
                       <div>
                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Category</label>
                        {{-- <input type="" name="activity_date" id="email" > --}}
@@ -106,8 +121,45 @@
                    </div>
                    <div>
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Description</label>
-                    <input type="text" name="activity_description" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Description of environmental activity" required>
+                    <!--<input type="text" name="activity_description" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Description of environmental activity" required>-->
+                    <textarea name="activity_description" cols="30" rows="5" required placeholder="Description of environmental activity"></textarea>
                     </div>
+                    <div class="max-w-sm">
+                           <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Photo (optional)</label>
+                           <img src="#" alt="Selected Image" id="previewImage" style="display: none; max-width: 200px; max-height: 200px;">
+                          
+                           <input type="file" name="image" accept="image/*" id="imageInput" class="mt-4">
+                           <script>
+    // Get references to the input and image elements
+    const imageInput = document.getElementById('imageInput');
+    const previewImage = document.getElementById('previewImage');
+
+    // Listen for changes in the input field
+    imageInput.addEventListener('change', function() {
+        // Get the selected file
+        const file = imageInput.files[0];
+
+        // Check if a file is selected
+        if (file) {
+            // Create a FileReader object
+            const reader = new FileReader();
+
+            // Set the image source when the file has been read
+            reader.onload = function() {
+                previewImage.src = reader.result;
+                previewImage.style.display = 'block';
+            }
+
+            // Read the file as a data URL
+            reader.readAsDataURL(file);
+        } else {
+            // No file selected, hide the preview image
+            previewImage.src = '#';
+            previewImage.style.display = 'none';
+        }
+    });
+</script>
+                       </div>
                     <div>
                       <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Select Address(required)</label>
                    

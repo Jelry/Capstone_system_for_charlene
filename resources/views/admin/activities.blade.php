@@ -22,7 +22,7 @@
                      <a href="{{ route('activities')}}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-100 ">
                         <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                         <span class="flex-1 ml-3 whitespace-nowrap">Activities</span>
-                        <span class="inline-flex justify-center items-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span>
+                        <!-- <span class="inline-flex justify-center items-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span> -->
                      </a>
                   </li>
                   <li>
@@ -44,12 +44,12 @@
                         <span class="flex-1 ml-3 whitespace-nowrap">Volunteers</span>
                      </a>
                   </li>
-                  <!-- <li>
+                  <li>
                      <a href="{{route('logs')}}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-100 ">
                         <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"></path></svg>
-                        <span class="flex-1 ml-3 whitespace-nowrap">Logs</span>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Registration Logs</span>
                      </a>
-                  </li> -->
+                  </li>
                   <li>
                  
                      <form method="POST" action="{{ route('logout') }}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg  hover:bg-gray-100 ">
@@ -77,90 +77,8 @@
                    <div class="col-span-3">
                     
                      <div class="flex mb-4">
-                        
-                        {{-- modal for adding environmental activities --}}
-                        
-<!-- Modal toggle -->
-
-{{-- <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-   Add
- </button> --}}
- <a href="{{route('activity_add')}}" type="button"  class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</a>
- <!-- Main modal -->
- <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
-     <div class="relative w-full h-full max-w-md md:h-auto ">
-         <!-- Modal content -->
-         <div class="relative bg-white rounded-lg shadow">
-             <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal">
-                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                 <span class="sr-only">Close modal</span>
-             </button>
-             <div class="px-6 py-6 lg:px-8">
-                 <h3 class="mb-4 text-xl font-medium text-gray-900 ">CREATE ENVIRONMENTAL ACTIVITY</h3>
-                 <form class="space-y-6" method="POST" action="{{ route('activity.store') }}">
-                  @csrf
-                 
-                     <div>
-                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Name</label>
-                         <input type="text" name="activity_name" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="name of environmental activity" required>
-                     </div>
-                     <div>
-                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Date</label>
-                        <input type="Date" name="activity_date" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="date of environmental activity" required>
-                    </div>
-                    <div>
-                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Category</label>
-                     {{-- <input type="" name="activity_date" id="email" > --}}
-                     <select name="activity_category" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="date of environmental activity" required>
-                        <option value="">-</option>
-                        @foreach($env_cat as $ec)
-                        <option value="{{$ec->id}}">{{$ec->category_name}}</option>
-                        @endforeach
-                      
-                     </select>
-                    
-                 </div>
-                 <div>
-                  <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Description</label>
-                  <input type="text" name="activity_description" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Description of environmental activity" required>
-                  </div>
-                  <div>
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Select Address</label>
-                    <button data-modal-target="open-map-modal" data-modal-toggle="open-map-modal" class="block text-gray-100 bg-green-500 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center " type="button">
-                      map
-                    </button>
-                    {{-- start of modal for map --}}
-                    <div id="open-map-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
-                      <div  class="relative rounded-lg  w-[900px] h-[500px]">
-                        <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="open-map-modal">
-                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                            <span class="sr-only">Close modal</span>
-                        </button>
-                        <div  class="px-6 py-6 lg:px-8">
-                          <div  class="h-full">
-                           
-                          </div>
-                        </div>
-                    </div>
-                  </div>
-                    {{-- end of modal for map --}}
-                  </div>
-                  <div id="map" class="h-[500px] w-[500px]">
-
-                  </div>
-                 <br>
-                     <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create Activity</button>
-                   
-                 </form>
-             </div>
-         </div>
-        
-         
-     </div>
-    
- </div> 
- 
-                        {{-- end for modal for adding environmental activities --}}
+                     <a href="{{route('activity_add')}}" type="button"  class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</a>
+                       
                      </div>
 <div class="overflow-hidden overflow-x-auto rounded-lg border border-gray-200">
    <table class="min-w-full divide-y divide-gray-200 text-sm">
@@ -199,6 +117,26 @@
            class="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"
          >
            <div class="flex items-center gap-2">
+             Time
+ 
+             {{-- <svg
+               xmlns="http://www.w3.org/2000/svg"
+               class="h-4 w-4 text-gray-700"
+               viewBox="0 0 20 20"
+               fill="currentColor"
+             >
+               <path
+                 fill-rule="evenodd"
+                 d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                 clip-rule="evenodd"
+               />
+             </svg> --}}
+           </div>
+         </th>
+         <th
+           class=" px-4 py-2 text-left font-medium text-gray-900"
+         >
+           <div class="flex items-center gap-2">
              Activity Name
  
              {{-- <svg
@@ -213,6 +151,15 @@
                  clip-rule="evenodd"
                />
              </svg> --}}
+           </div>
+         </th>
+         <th
+           class=" px-4 py-2 text-left font-medium text-gray-900"
+         >
+           <div class="flex items-center gap-2">
+            Status
+ 
+   
            </div>
          </th>
          <th
@@ -272,59 +219,74 @@
      <tbody class="divide-y divide-gray-200">
       
        @foreach ($env_act as $item)
-      
-               {{-- modal for editing environmental activities --}}
+       {{-- modal for status of environmental activities --}}
                         
 <!-- Modal toggle -->
 
+{{-- <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+   Add
+ </button> --}}
 
-<!-- Main modal -->
-<div id="{{$item->id}}{{$item->act_date}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
-    <div class="relative w-full h-full max-w-md md:h-auto">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow">
-            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="{{$item->id}}{{$item->act_date}}">
-                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                <span class="sr-only">Close modal</span>
-            </button>
-            <div class="px-6 py-6 lg:px-8">
-                <h3 class="mb-4 text-xl font-medium text-gray-900 ">EDIT ENVIRONMENTAL ACTIVITY</h3>
-                <form class="space-y-6" method="POST" action="{{ route('update_activity',$item->id) }}"  >
-                 @csrf
-            
-                   <br>
-                    <div>
-                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Name</label>
-                        <input type="text" name="activity_name" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " value="{{$item->act_name}}" required>
-                    </div>
-                    <div>
-                       <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Date</label>
-                       <input type="Date" name="activity_date" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " value="{{$item->act_date}}" required>
-                   </div>
-                   <div>
-                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Category</label>
-                    {{-- <input type="" name="activity_date" id="email" > --}}
-                    <select name="activity_category" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required>
-                       <option value="">-</option>
-                       <option value="sample category">sample category</option>
-                    </select>
-                   <input type="hidden" name="act_category_default" value="{{$item->act_category}}">
-                   <input type="hidden" name="act_id" value="{{$item->id}}">
-                </div>
-                <div>
-                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Description</label>
-                 <input type="text" name="activity_description" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " value="{{$item->act_desc}}" required>
+ <!-- Main modal -->
+ <div id="authentication-modal{{$item->id}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+     <div class="relative w-full h-full max-w-md md:h-auto ">
+         <!-- Modal content -->
+         <div class="relative bg-white rounded-lg shadow">
+             <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal{{$item->id}}">
+                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                 <span class="sr-only">Close modal</span>
+             </button>
+             <div class="px-6 py-6 lg:px-8">
+                 <h6 class="mb-4 text-xl font-medium text-gray-900 ">Change activity status of  <strong class="text-green-400">{{$item->act_name}}</strong></h6>
+                 <form class="space-y-6" method="POST" action="{{ route('activities.status') }}" enctype="multipart/form-data">
+                  @csrf
+                 <div>
+                  Current:  @foreach($status as $statuses)
+          @if($item->id == $statuses->acti_id)
+            {{$statuses->status}}
+          @endif
+         @endforeach
+                 </div>
+                 <input type="hidden" name="acti_id" value="{{$item->id}}">
+                 change to:
+                 <select name="status" id="statusSelect{{$item->id}}" class="rounded shadow m-2 mb-2 " required onchange="toggleFileInput{{$item->id}}()">
+                  <option value=""></option>
+                  <option value="uncompleted">uncompleted</option>
+                  <option value="completed">completed</option>
+                  <option value="cancelled">cancelled</option>
+                 </select>
+                 <br> <br>
+                 <label for=""> You may upload pictures of the event if it is completed</label>
+                 <br>
+                 <input name="event_photos[]" type="file" id="pictureInput{{$item->id}}" style="display: none;" accept="image/*" multiple>
+                 <br>
+                  <script>
+                    function toggleFileInput{{$item->id}}() {
+  var selectElement{{$item->id}} = document.getElementById("statusSelect{{$item->id}}");
+  var fileInput{{$item->id}} = document.getElementById("pictureInput{{$item->id}}");
+
+  if (selectElement{{$item->id}}.value === "completed") {
+    fileInput{{$item->id}}.style.display = "block";
+  } else {
+    fileInput{{$item->id}}.style.display = "none";
+  }
+}
+
+                  </script>
+                 <br>
+                     <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update status</button>
+                   
+                 </form>
              </div>
-                <br>
-                    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update Activity</button>
-                  
-                </form>
-            </div>
-        </div>
-    </div>
-</div> 
-
-                       {{-- end for modal for editing environmental activities --}}
+         </div>
+        
+         
+     </div>
+    
+ </div> 
+ 
+                        {{-- end for modal for status of environmental activities --}}
+             
        <tr>
         {{-- <td class="sticky inset-y-0 left-0 bg-white px-4 py-2">
           <label class="sr-only" for="Row1">Row 1</label>
@@ -335,11 +297,29 @@
             id="Row1"
           />
         </td> --}}
-        <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+        <td class=" px-4 py-2 font-medium text-gray-900">
           {{$item->act_date}}
         </td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700 truncate text-ellipsis">
+        <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+          {{$item->acti_time}}
+        </td>
+        <td class="px-4 py-2 text-gray-700">
           {{$item->act_name}}
+        </td>
+        <td class="px-4 py-2 text-gray-700">
+        
+         <strong
+          class="rounded bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-700 cursor-pointer ml-1" data-modal-target="authentication-modal{{$item->id}}" data-modal-toggle="authentication-modal{{$item->id}}"
+        >
+       
+        @foreach($status as $statuses)
+          @if($item->id == $statuses->acti_id)
+            {{$statuses->status}}
+          @endif
+         @endforeach
+          
+        </strong>
+        
         </td>
         <td class="whitespace-nowrap px-4 py-2 text-gray-700">
           @php
@@ -354,7 +334,7 @@
          @endforeach
          {{$v_count}}
         </td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{$item->act_desc}}</td>
+        <td class=" px-4 py-2 text-gray-700">{{$item->act_desc}}</td>
         <td class="whitespace-nowrap px-4 py-2">
           <strong
             class="rounded  px-3 py-1.5 text-xs font-medium text-teal-700"
@@ -365,16 +345,12 @@
         
         <td class="whitespace-nowrap px-4 py-2">
         
-         {{-- <strong
-           class="rounded bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-700 cursor-pointer" data-modal-target="{{$item->id}}{{$item->act_date}}" data-modal-toggle="{{$item->id}}{{$item->act_date}}"
-         >
-           edit
-         </strong> --}}
-        
+   
         
          <form action="activity_edit/{{$item->id}}" method="post" class="p-0 m-0 text-blue-700">
           @csrf
           <input type="hidden" name="act_id_btch" value="{{$item->id}}">
+          <div class="flex flex-col items-center">
           <strong
           class="rounded bg-green-100 px-3 py-1.5 text-xs font-medium text-green-700 cursor-pointer mr-1" 
         >
@@ -389,6 +365,9 @@
         delete
           
         </strong>
+          </div>
+
+        
         </form>
         
        </td>
@@ -431,7 +410,7 @@
    </table>
   
  </div>
- 
+ {{$env_act->links()}}
                    </div>
                     
                 </div>
