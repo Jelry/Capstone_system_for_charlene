@@ -76,9 +76,53 @@
                 <div class="p-6 text-gray-900 grid grid-cols-1 lg:grid-cols-3 gap-3">
                    <div class="col-span-3">
                     
-                     <div class="flex mb-4">
+                     <div class="flex mb-4 justify-between">
                      <a href="{{route('activity_add')}}" type="button"  class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</a>
+                       <div>
+                      
+                        Filter by
+                        <select name="filter" id="filter" class="rounded focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center" required>
+  <option value=""></option>
+  <option value="name">Name</option>
+  <option value="category">Category</option>
+</select>
+
+<select name="sort" id="sort" class="rounded focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center">
+  <option value="desc">Descending</option>
+  <option value="asc">Ascending</option>
+</select>
+
+<a id="filterLink" href="/activities/filterBy/name" class="bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center text-white">Sort</a>
+
+<script>
+  const selectElement = document.getElementById('filter');
+  const sortElement = document.getElementById('sort');
+  const linkElement = document.getElementById('filterLink');
+
+  selectElement.addEventListener('change', function() {
+    updateHref();
+  });
+
+  sortElement.addEventListener('change', function() {
+    updateHref();
+  });
+
+  function updateHref() {
+    const selectedValue = selectElement.value;
+    const sortValue = sortElement.value;
+    const newHref = `/activities/filterBy/${selectedValue}/${sortValue}`;
+    linkElement.setAttribute('href', newHref);
+  }
+</script>
+
+
+
+
+
+
+                  
                        
+                       </div>
                      </div>
 <div class="overflow-hidden overflow-x-auto rounded-lg border border-gray-200">
    <table class="min-w-full divide-y divide-gray-200 text-sm">
@@ -347,14 +391,14 @@
         
    
         
-         <form action="activity_edit/{{$item->id}}" method="post" class="p-0 m-0 text-blue-700">
+         <form action="/activity_edit/{{$item->id}}" method="post" class="p-0 m-0 text-blue-700">
           @csrf
           <input type="hidden" name="act_id_btch" value="{{$item->id}}">
           <div class="flex flex-col items-center">
           <strong
           class="rounded bg-green-100 px-3 py-1.5 text-xs font-medium text-green-700 cursor-pointer mr-1" 
         >
-        <a href="activity_view/{{$item->id}}">view</a> 
+        <a href="/activity_view/{{$item->id}}">view</a> 
         </strong>
 
           <button type="submit">edit</button>

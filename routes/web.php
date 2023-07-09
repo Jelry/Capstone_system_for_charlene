@@ -33,6 +33,12 @@ Route::get('/',[AdminController::class,'welcome'])->name('welcome');
 Route::get('view-all-activities-page',[AdminController::class,'guestViewAll'])->name('guest_view_all');
 Route::get('/admin',[AdminController::class,'index'])->middleware(['auth','verified','isAdmin'])->name('admin');
 Route::get('/activities',[AdminController::class,'activities'])->middleware(['auth','verified','isAdmin'])->name('activities');
+Route::get('/activities/filterBy/name/',[AdminController::class,'activitiesFilterByStatus'])->middleware(['auth','verified','isAdmin'])->name('filterByName');
+Route::get('/activities/filterBy/name/desc',[AdminController::class,'activitiesFilterByNameDesc'])->middleware(['auth','verified','isAdmin'])->name('filterByName');
+Route::get('/activities/filterBy/name/asc',[AdminController::class,'activitiesFilterByNameAsc'])->middleware(['auth','verified','isAdmin'])->name('filterByName');
+Route::get('/activities/filterBy/category/',[AdminController::class,'activitiesFilterByCategory'])->middleware(['auth','verified','isAdmin'])->name('filterByCategory');
+Route::get('/activities/filterBy/category/desc',[AdminController::class,'activitiesFilterByCategoryDesc'])->middleware(['auth','verified','isAdmin'])->name('filterByCategory');
+Route::get('/activities/filterBy/category/asc',[AdminController::class,'activitiesFilterByCategoryAsc'])->middleware(['auth','verified','isAdmin'])->name('filterByCategory');
 Route::post('/change_status',[AdminController::class,'status_change'])->middleware(['auth','verified','isAdmin'])->name('activities.status');
 
 Route::get('/inbox',[AdminController::class,'inbox'])->middleware(['auth','verified','isAdmin'])->name('inbox');

@@ -12,6 +12,60 @@ use App\Models\completed_event_photos;
 
 class AdminController extends Controller
 {
+    public function activitiesFilterByCategoryAsc()
+    {
+        return view('admin.activities',[
+            'env_act' =>DB::table('environmental__activities')
+            ->where('user_id','=',Auth::id())->orderBy('act_category', 'asc')->paginate(5),  'env_cat' =>DB::table('env_acti_categories')
+            ->where('user_id','=',Auth::id())->get(),'volunteers' =>DB::table('join_activities')
+            ->where('created_at','LIKE','%'."0".'%')->get(),'status'=>DB::table('activity_statuses')->where('created_at','like','%0%')->get()
+   ]);
+    }
+    public function activitiesFilterByCategoryDesc()
+    {
+        return view('admin.activities',[
+            'env_act' =>DB::table('environmental__activities')
+            ->where('user_id','=',Auth::id())->orderBy('act_category', 'desc')->paginate(5),  'env_cat' =>DB::table('env_acti_categories')
+            ->where('user_id','=',Auth::id())->get(),'volunteers' =>DB::table('join_activities')
+            ->where('created_at','LIKE','%'."0".'%')->get(),'status'=>DB::table('activity_statuses')->where('created_at','like','%0%')->get()
+   ]);
+    }
+    public function activitiesFilterByNameAsc()
+    {
+        return view('admin.activities',[
+            'env_act' =>DB::table('environmental__activities')
+            ->where('user_id','=',Auth::id())->orderBy('act_name', 'asc')->paginate(5),  'env_cat' =>DB::table('env_acti_categories')
+            ->where('user_id','=',Auth::id())->get(),'volunteers' =>DB::table('join_activities')
+            ->where('created_at','LIKE','%'."0".'%')->get(),'status'=>DB::table('activity_statuses')->where('created_at','like','%0%')->get()
+   ]);
+    }
+    public function activitiesFilterByNameDesc()
+    {
+        return view('admin.activities',[
+            'env_act' =>DB::table('environmental__activities')
+            ->where('user_id','=',Auth::id())->orderBy('act_name', 'desc')->paginate(5),  'env_cat' =>DB::table('env_acti_categories')
+            ->where('user_id','=',Auth::id())->get(),'volunteers' =>DB::table('join_activities')
+            ->where('created_at','LIKE','%'."0".'%')->get(),'status'=>DB::table('activity_statuses')->where('created_at','like','%0%')->get()
+   ]);
+    }
+    public function activitiesFilterByStatus()
+    {
+        return view('admin.activities',[
+            'env_act' =>DB::table('environmental__activities')
+            ->where('user_id','=',Auth::id())->orderBy('act_name', 'desc')->paginate(5),  'env_cat' =>DB::table('env_acti_categories')
+            ->where('user_id','=',Auth::id())->get(),'volunteers' =>DB::table('join_activities')
+            ->where('created_at','LIKE','%'."0".'%')->get(),'status'=>DB::table('activity_statuses')->where('created_at','like','%0%')->get()
+   ]);
+    }
+    public function activitiesFilterByCategory()
+    {
+        return view('admin.activities',[
+            'env_act' =>DB::table('environmental__activities')
+            ->where('user_id','=',Auth::id())->orderBy('act_category', 'desc')->paginate(5),  'env_cat' =>DB::table('env_acti_categories')
+            ->where('user_id','=',Auth::id())->get(),'volunteers' =>DB::table('join_activities')
+            ->where('created_at','LIKE','%'."0".'%')->get(),'status'=>DB::table('activity_statuses')->where('created_at','like','%0%')->get()
+   ]);
+    }
     public function index()
     {
         $role=Auth::user()->role;

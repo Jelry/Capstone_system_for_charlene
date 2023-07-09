@@ -200,12 +200,37 @@
                     
                 </div>
                 <div class="mx-auto w-full overflow-hidden rounded shadow p-4">
-  <canvas
-    data-te-chart="line"
-    data-te-dataset-label="Awaiting data"
-    data-te-labels="['January', 'February' , 'March' , 'April' , 'May' , 'June' , 'July', 'August','September','October','November','December']"
-    data-te-dataset-data="[2112, 2343, 2545, 3423, 2365, 1985, 987, 2545, 3423, 2365, 1985, 987]">
-  </canvas>
+@php
+    $counts = array_fill(0, 12, 0); // Initialize an array of 12 elements with 0 count for each month
+
+    foreach ($env_act as $item) {
+        $month = Carbon\Carbon::parse($item->created_at)->format('n') - 1;
+        $counts[$month]++;
+    }
+@endphp
+
+<canvas
+  data-te-chart="line"
+  data-te-dataset-label="Activities created"
+  data-te-labels="['January', 'February' , 'March' , 'April' , 'May' , 'June' , 'July', 'August','September','October','November','December']"
+  data-te-dataset-data="{{ json_encode($counts) }}"
+></canvas>
+
+@php
+    $countss = array_fill(0, 12, 0); // Initialize an array of 12 elements with 0 count for each month
+
+    foreach ($status as $item) {
+        $month = Carbon\Carbon::parse($item->created_at)->format('n') - 1;
+        $countss[$month]++;
+    }
+@endphp
+<br> <br> <br>
+<canvas
+  data-te-chart="line"
+  data-te-dataset-label="Activities completed"
+  data-te-labels="['January', 'February' , 'March' , 'April' , 'May' , 'June' , 'July', 'August','September','October','November','December']"
+  data-te-dataset-data="{{ json_encode($countss) }}"
+></canvas>
 </div>
             </div>
         </div>
