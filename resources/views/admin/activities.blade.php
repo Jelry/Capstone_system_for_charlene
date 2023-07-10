@@ -295,7 +295,7 @@
                  change to:
                  <select name="status" id="statusSelect{{$item->id}}" class="rounded shadow m-2 mb-2 " required onchange="toggleFileInput{{$item->id}}()">
                   <option value=""></option>
-                  <option value="uncompleted">uncompleted</option>
+                  <option value="on going">on going</option>
                   <option value="completed">completed</option>
                   <option value="cancelled">cancelled</option>
                  </select>
@@ -350,7 +350,7 @@
         <td class="px-4 py-2 text-gray-700">
           {{$item->act_name}}
         </td>
-        <td class="px-4 py-2 text-gray-700">
+        <td class="px-4 py-2 text-gray-700" style="width:8em;">
         
          <strong
           class="rounded bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-700 cursor-pointer ml-1" data-modal-target="authentication-modal{{$item->id}}" data-modal-toggle="authentication-modal{{$item->id}}"
@@ -361,7 +361,7 @@
             {{$statuses->status}}
           @endif
          @endforeach
-          
+        
         </strong>
         
         </td>

@@ -114,7 +114,7 @@ class EnvironmentalActivitiesController extends Controller
         $status = new activity_status();
         $env_acti_latest = Environmental_Activities::latest()->first();
         $status->acti_id = $env_acti_latest->id;
-        $status->status = "uncompleted";
+        $status->status = "on going";
         $status->save();
 
  

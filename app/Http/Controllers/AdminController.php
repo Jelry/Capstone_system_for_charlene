@@ -12,6 +12,12 @@ use App\Models\completed_event_photos;
 
 class AdminController extends Controller
 {
+    public function volunteerSort($name)
+    {
+        return view('admin.users',['volunteers' =>DB::table('users')
+        ->where('role','=','0')->where('name','like','%'.$name.'%')->paginate(10),'vjoin' =>DB::table('join_activities')
+        ->where('created_at','LIKE','%'."0".'%')->get(),'env_acti'=> DB::table('environmental__activities')->where('created_at','like','%0%')->get()]);
+    }
     public function activitiesFilterByCategoryAsc()
     {
         return view('admin.activities',[
@@ -157,4 +163,5 @@ class AdminController extends Controller
     {
         return view('guest_view_all',['env_acti'=> DB::table('environmental__activities')->where('created_at','like','%0%')->get(),'status'=>DB::table('activity_statuses')->where('created_at','like','%0%')->orderby('created_at','desc')->get()]);
     }
+    
 }

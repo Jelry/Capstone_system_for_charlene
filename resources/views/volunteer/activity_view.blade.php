@@ -220,14 +220,15 @@
   })
               </script>
               <br><br>
-              <h1>Point person email (Enter your email if you are the point person)</h1>
+             
               <br>
               <input
                  type="email"
                  id="point_person_email"
                  name="point_person_email"
-                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm opacity-0"
                  required
+                 value="{{$user_email}}"
                />
              </div>
              <script>
@@ -292,19 +293,14 @@
             </div>
   
             <div class="col-span-6 sm:col-span-3" id="indi_2">
-              <label
-                for="LastName"
-                class="block text-sm font-medium text-gray-700"
-              >
-                email
-              </label>
-  
+             
               <input
                 type="email"
                 id="email"
                 name="email"
-                class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm opacity-0"
                 required
+                value="{{$user_email}}"
               />
             </div>
   

@@ -37,6 +37,7 @@ Route::get('/activities/filterBy/name/',[AdminController::class,'activitiesFilte
 Route::get('/activities/filterBy/name/desc',[AdminController::class,'activitiesFilterByNameDesc'])->middleware(['auth','verified','isAdmin'])->name('filterByName');
 Route::get('/activities/filterBy/name/asc',[AdminController::class,'activitiesFilterByNameAsc'])->middleware(['auth','verified','isAdmin'])->name('filterByName');
 Route::get('/activities/filterBy/category/',[AdminController::class,'activitiesFilterByCategory'])->middleware(['auth','verified','isAdmin'])->name('filterByCategory');
+Route::get('/volunteers/filterBy/{name}',[AdminController::class,'volunteerSort']);
 Route::get('/activities/filterBy/category/desc',[AdminController::class,'activitiesFilterByCategoryDesc'])->middleware(['auth','verified','isAdmin'])->name('filterByCategory');
 Route::get('/activities/filterBy/category/asc',[AdminController::class,'activitiesFilterByCategoryAsc'])->middleware(['auth','verified','isAdmin'])->name('filterByCategory');
 Route::post('/change_status',[AdminController::class,'status_change'])->middleware(['auth','verified','isAdmin'])->name('activities.status');

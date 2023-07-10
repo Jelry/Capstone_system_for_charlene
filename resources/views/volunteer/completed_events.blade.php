@@ -52,7 +52,7 @@
    
    
       <div class="flex flex-col-reverse">
-        <dt class="text-sm font-medium text-gray-600">Status</dt>
+       
         <dd class="text-xs text-gray-500">
           @foreach($status as $s)
             @if($item->id == $s->acti_id)
@@ -60,10 +60,11 @@
             @endif
           @endforeach
         </dd>
+        <dt class="text-sm font-medium text-gray-600">Status</dt>
       </div>
   
       <div class="ml-3 flex flex-col-reverse sm:ml-6">
-        <dt class="text-sm font-medium text-green-700">Volunteers</dt>
+      
         <dd class="text-xs text-gray-500">
           @php
            $v_count=0;   
@@ -77,6 +78,7 @@
           @endforeach
           {{$v_count}}
         </dd>
+        <dt class="text-sm font-medium text-green-700">Volunteers</dt>
       </div>
       <div class="col-span-3 flex justify-end">
         <a

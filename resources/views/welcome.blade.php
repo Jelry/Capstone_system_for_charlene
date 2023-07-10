@@ -107,16 +107,33 @@ https://templatemo.com/tm-565-onix-digital
     </div>
   </div>
 
-  
+ 
 
   <div id="events" class="our-portfolio section">
+  <div style="text-align:center;margin-bottom:5em;display:flex;justify-content:center">
+      <div style="margin-left:3em;margin-right:3em;"><img src="images/um_logo.png" style="width:5em;height:5em;"></div>
+      <div style="margin-left:3em;margin-right:3em;"><img src="images/dtp_logo.png" style="width:5em;height:5em;"></div>
+      <div style="margin-left:3em;margin-right:3em;"><img src="images/city_logo.png" style="width:5em;height:5em;"></div>
+     
+
+  </div>
+  <div style="margin-bottom:8em;">
+      <h1 class="text-center">About the project</h1> <br>
+        <p class="text-justify" style="padding-left:10em;padding-right:10em;">
+        Greenisenios is a web-based application that will help the environmental officials in managing the environmental activities in Digos City and assist the volunteers in identifying places that require attention in terms of cleaning and maintaining the city's natural resources.  This system will allow the CENRO administrator to register volunteers online, schedule the activity day, and locate the various sites where the activity will take place. Using this application makes it simpler for volunteers to sign up and register online.
+        </p>
+  </div>
     <div class="portfolio-left-dec">
       <img src="custom_style/assets/images/portfolio-left-dec.png" alt="">
     </div>
+   
     <div class="container">
+   
       <div class="row">
+      
         <div class="col-lg-6 offset-lg-3">
           <div class="section-heading">
+            
             <h2>Join <span>us</span> on our latest <em>events</em>  now!</h2>
            
           </div>

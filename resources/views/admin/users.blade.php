@@ -79,7 +79,22 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 grid grid-cols-1 lg:grid-cols-3 gap-3">
-                  
+              <div>
+              <input type="text" id="searchInput" class="rounded shadow" placeholder="search volunteer">
+<a id="filterLink" href="/volunteers/filterBy/name" class="bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center text-white">Search</a>
+
+<script>
+  document.getElementById('filterLink').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default behavior of the anchor tag
+
+    var searchValue = document.getElementById('searchInput').value;
+    var url = '/volunteers/filterBy/' + encodeURIComponent(searchValue);
+
+    window.location.href = url; // Redirect to the dynamically generated URL
+  });
+</script>
+
+              </div>    
 
    <table class="w-full text-sm text-left text-gray-500 col-span-3">
        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
@@ -87,9 +102,9 @@
                <th scope="col" class="px-6 py-3">
                   Volunteer name
                </th>
-               <th scope="col" class="px-6 py-3">
+               <!-- <th scope="col" class="px-6 py-3">
                    Account Created Date
-               </th>
+               </th> -->
                <th scope="col" class="px-6 py-3">
                    Email
                </th>
@@ -105,9 +120,9 @@
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                 {{$v->name}}
             </th>
-            <td class="px-6 py-4">
+            <!-- <td class="px-6 py-4">
                {{ Carbon\Carbon::parse($v->created_at)->format('Y-m-d') }}
-            </td>
+            </td> -->
             <td class="px-6 py-4">
                 {{$v->email}}
             </td>
