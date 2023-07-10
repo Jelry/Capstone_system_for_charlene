@@ -148,7 +148,7 @@ https://templatemo.com/tm-565-onix-digital
           @foreach($status as $s)
             @foreach($env_acti as $ea)
               @if($ea->id == $s->acti_id)
-                @if($s->status=='uncompleted')
+                @if($s->status=='on going')
                 <div class="item">
               <div class="thumb">
                 @if($ea->photo=='')
