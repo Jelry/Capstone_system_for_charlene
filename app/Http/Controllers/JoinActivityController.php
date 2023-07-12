@@ -52,20 +52,19 @@ class JoinActivityController extends Controller
            
             // return redirect('/dashboard');
           //send sms notif to individual volunteer
-            // $basic  = new \Vonage\Client\Credentials\Basic("53d0ecd8", "QTczWtLKYWP1WlYi");
-            // $client = new \Vonage\Client($basic);
-            // $response = $client->sms()->send(
-            //     new \Vonage\SMS\Message\SMS($indi_number,"Greenisenos", 'Greenisenos - Hello volunteer! this is to notify you that you have joined an environmental activity named :'.$request->activity_name.'this activity will be held on :'.$request->activity_date.' Save the date!
-            //     We will also notify you 2 days before the event. See you there!')
-            // );
+          $basic  = new \Vonage\Client\Credentials\Basic("47b2a912", "M95O9ZVHVlHxYIZv");
+          $client = new \Vonage\Client($basic);
+            $response = $client->sms()->send(
+                new \Vonage\SMS\Message\SMS($indi_number,"Greenisenios", 'Greenisenios - Hello volunteer! this is to notify you that you have joined an environmental activity named :'.$request->activity_name.'this activity will be held on :'.$request->activity_date.' Save the date! See you there!')
+            );
             
-            // $message = $response->current();
+            $message = $response->current();
             
-            // if ($message->getStatus() == 0) {
-            //     echo "The message was sent successfully\n";
-            // } else {
-            //     echo "The message failed with status: " . $message->getStatus() . "\n";
-            // }
+            if ($message->getStatus() == 0) {
+                echo "The message was sent successfully\n";
+            } else {
+                echo "The message failed with status: " . $message->getStatus() . "\n";
+            }
             //end of sending sms notif to individual volunteer
                 //Show the server response
                 return back()->with('message', 'You have successfully joined as an individual volunteer!');
@@ -84,20 +83,19 @@ class JoinActivityController extends Controller
             $request->user()->JoinActivity()->create($validated);
             // return ('you have successfully joined as an organization');
             //send sms notif to org volunteer
-            // $basic  = new \Vonage\Client\Credentials\Basic("53d0ecd8", "QTczWtLKYWP1WlYi");
-            // $client = new \Vonage\Client($basic);
-            // $response = $client->sms()->send(
-            //     new \Vonage\SMS\Message\SMS($org_number,"Greenisenos", 'Greenisenos - Hello volunteer! this is to notify you that you have joined an environmental activity named :'.$request->activity_name.'this activity will be held on :'.$request->activity_date.'You are registered to the event as organization and you are the point person please notify everyone under your org about the event date
-            //     We will also notify you 2 days before the event. See you there!')
-            // );
+            $basic  = new \Vonage\Client\Credentials\Basic("47b2a912", "M95O9ZVHVlHxYIZv");
+            $client = new \Vonage\Client($basic);
+            $response = $client->sms()->send(
+                new \Vonage\SMS\Message\SMS($org_number,"Greenisenios", 'Greenisenios - Hello volunteer! this is to notify you that you have joined an environmental activity named :'.$request->activity_name.'this activity will be held on :'.$request->activity_date.'You are registered to the event as organization and you are the point person. Please notify everyone under your org about the event date. See you there!')
+            );
             
-            // $message = $response->current();
+            $message = $response->current();
             
-            // if ($message->getStatus() == 0) {
-            //     echo "The message was sent successfully\n";
-            // } else {
-            //     echo "The message failed with status: " . $message->getStatus() . "\n";
-            // }
+            if ($message->getStatus() == 0) {
+                echo "The message was sent successfully\n";
+            } else {
+                echo "The message failed with status: " . $message->getStatus() . "\n";
+            }
             //end of sending sms notif to individual org
             return back()->with('message', 'You have successfully joined as an organization!');
             // return redirect('/dashboard');
