@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('env__activities', function (Blueprint $table) {
+        Schema::table('environmental__activities', function (Blueprint $table) {
             $table->string('latlang')->nullable();
             $table->string('lat');
             $table->string('lang');
