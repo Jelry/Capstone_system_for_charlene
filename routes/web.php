@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
+Auth::routes(['verify'=>true]);
 Route::get('/',[AdminController::class,'welcome'])->name('welcome');
 Route::get('view-all-activities-page',[AdminController::class,'guestViewAll'])->name('guest_view_all');
 Route::get('/admin',[AdminController::class,'index'])->middleware(['auth','verified','isAdmin'])->name('admin');
