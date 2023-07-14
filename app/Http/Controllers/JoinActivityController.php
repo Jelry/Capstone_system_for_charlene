@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class JoinActivityController extends Controller
 {
+    public function cancel($id)
+    {
+        JoinActivity::destroy($id);
+        return back()->with('message', 'You cancelled your booking if you change your mind you can still book this event again!');
+    }
     /**
      * Display a listing of the resource.
      *

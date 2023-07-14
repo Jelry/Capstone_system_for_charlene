@@ -79,6 +79,6 @@ Route::get('/view_activity/{id}',[VolunteerActivityViewController::class,'index'
 Route::resource('join',JoinActivityController::class)
         ->only(['index', 'store', 'update'])
         ->middleware(['auth','verified']);
-        
+        Route::get('join/cancel/{id}',[JoinActivityController::class,'cancel'])->middleware(['auth'])->name('join_cancel');       
 
 require __DIR__.'/auth.php';

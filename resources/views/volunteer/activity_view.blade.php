@@ -385,7 +385,8 @@
               </button>
              @foreach($joined as $join)
              @if($join->activity_id==$id)
-             You already Joined this event
+             You already Joined this event 
+            <a href="/join/cancel/{{$join->id}}" style="color:blue;">cancel</a>
              <script>
                document.getElementById('join_if_not_joined').style.display="none";
              </script>
