@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\JoinActivity;
+use App\Models\Environmental_Activities;
+use App\Models\activity_status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
 
 class JoinActivityController extends Controller
 {
@@ -21,7 +24,7 @@ class JoinActivityController extends Controller
      */
     public function index()
     {
-        return view('volunteer.my_bookings',['my_bookings'=>DB::Table('join_activities')->where('user_id',"=",Auth::id())->get()]);
+        return view('volunteer.my_bookings',['my_bookings'=>DB::Table('join_activities')->where('user_id',"=",Auth::id())->get(),'acti'=>Environmental_Activities::all(),'status'=>activity_status::all()]);
     }
 
     /**

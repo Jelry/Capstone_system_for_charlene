@@ -31,6 +31,9 @@
                             <th scope="col" class="px-6 py-3">
                                 Joined Date
                             </th>
+                            <th>
+                                Days Left
+                            </th>
                             <th scope="col" class="px-6 py-3">
                                 Action
                             </th>
@@ -55,6 +58,44 @@
                             <td class="px-6 py-4">
                                 {{ Carbon\Carbon::parse($indi_bookings->created_at)->format('Y-m-d') }}
                             </td>
+                            <td>
+                    @foreach($acti as $actt)
+                  
+                    
+                    @if($actt->id==$indi_bookings->activity_id)
+                    @foreach($status as $ss)
+                    @if($ss->acti_id == $actt->id)
+                    @if($ss->status=='on going')
+ <!-- getting the date range -->
+ @php 
+                    $dateRange = $actt->act_date;
+
+// Split the string by the word "to"
+$dates = explode(" to ", $dateRange);
+
+// Get the first date from the $dates array
+$firstDate = $dates[0];
+
+
+
+$activityDate = $firstDate;
+
+    $currentDate = new DateTime();
+    $activityDate = new DateTime($activityDate);
+    $interval = $currentDate->diff($activityDate);
+    $daysLeft = $interval->days;
+    echo "There are {$daysLeft} days left before the activity.";
+                    @endphp
+                    @else 
+                    N/A
+                    @endif
+                    @endif
+                    @endforeach
+                   
+                   
+                    @endif
+                    @endforeach
+                </td>
                             <td class="px-6 py-4">
                                 <a href="/view_activity/{{$indi_bookings->activity_id}}" class="font-medium text-blue-600  hover:underline">View</a>
                             </td>
@@ -82,9 +123,13 @@
                 <th scope="col" class="px-6 py-3">
                     Date Joined
                 </th>
+                <th>
+                    Days Left
+                </th>
                 <th scope="col" class="px-6 py-3">
                     Action
                 </th>
+               
             </tr>
         </thead>
         <tbody>
@@ -102,6 +147,44 @@
                 </td>
                 <td class="px-6 py-4">
                     {{ Carbon\Carbon::parse($org_bookings->created_at)->format('Y-m-d') }}
+                </td>
+                <td>
+                    @foreach($acti as $act)
+                  
+                    
+                    @if($act->id==$org_bookings->activity_id)
+                    @foreach($status as $s)
+                    @if($s->acti_id == $act->id)
+                    @if($s->status=='on going')
+ <!-- getting the date range -->
+ @php 
+                    $dateRange = $act->act_date;
+
+// Split the string by the word "to"
+$dates = explode(" to ", $dateRange);
+
+// Get the first date from the $dates array
+$firstDate = $dates[0];
+
+
+
+$activityDate = $firstDate;
+
+    $currentDate = new DateTime();
+    $activityDate = new DateTime($activityDate);
+    $interval = $currentDate->diff($activityDate);
+    $daysLeft = $interval->days;
+    echo "There are {$daysLeft} days left before the activity.";
+                    @endphp
+                    @else 
+                    N/A
+                    @endif
+                    @endif
+                    @endforeach
+                   
+                   
+                    @endif
+                    @endforeach
                 </td>
                 <td class="px-6 py-4">
                     <a href="/view_activity/{{$org_bookings->activity_id}}" class="font-medium text-blue-600  hover:underline">View</a>
