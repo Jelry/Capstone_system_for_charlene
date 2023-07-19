@@ -12,6 +12,33 @@ use App\Models\completed_event_photos;
 
 class AdminController extends Controller
 {
+    public function activitiesFilterByStatusCancelled()
+    {
+        return view('admin.filterStatusCancelled',[
+            'env_act' =>DB::table('environmental__activities')
+            ->where('user_id','=',Auth::id())->orderBy('created_at', 'desc')->get(),  'env_cat' =>DB::table('env_acti_categories')
+            ->where('user_id','=',Auth::id())->get(),'volunteers' =>DB::table('join_activities')
+            ->where('created_at','LIKE','%'."0".'%')->get(),'status'=>DB::table('activity_statuses')->where('created_at','like','%0%')->get()
+   ]);
+    }
+    public function activitiesFilterByStatusOngoing()
+    {
+        return view('admin.filterStatusOngoing',[
+            'env_act' =>DB::table('environmental__activities')
+            ->where('user_id','=',Auth::id())->orderBy('created_at', 'desc')->get(),  'env_cat' =>DB::table('env_acti_categories')
+            ->where('user_id','=',Auth::id())->get(),'volunteers' =>DB::table('join_activities')
+            ->where('created_at','LIKE','%'."0".'%')->get(),'status'=>DB::table('activity_statuses')->where('created_at','like','%0%')->get()
+   ]);
+    }
+    public function activitiesFilterByStatusCompleted()
+    {
+        return view('admin.filterStatusComplete',[
+            'env_act' =>DB::table('environmental__activities')
+            ->where('user_id','=',Auth::id())->orderBy('created_at', 'desc')->get(),  'env_cat' =>DB::table('env_acti_categories')
+            ->where('user_id','=',Auth::id())->get(),'volunteers' =>DB::table('join_activities')
+            ->where('created_at','LIKE','%'."0".'%')->get(),'status'=>DB::table('activity_statuses')->where('created_at','like','%0%')->get()
+   ]);
+    }
     public function volunteerSort($name)
     {
         return view('admin.users',['volunteers' =>DB::table('users')

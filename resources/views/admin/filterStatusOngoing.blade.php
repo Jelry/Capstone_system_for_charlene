@@ -308,198 +308,206 @@
      <tbody class="divide-y divide-gray-200">
       
        @foreach ($env_act as $item)
-       {{-- modal for status of environmental activities --}}
+       @foreach($status as $statusess)
+          @if($item->id == $statusess->acti_id)
+          @if($statusess->status=='on going')
+          {{-- modal for status of environmental activities --}}
                         
-<!-- Modal toggle -->
-
-{{-- <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-   Add
- </button> --}}
-
- <!-- Main modal -->
- <div id="authentication-modal{{$item->id}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
-     <div class="relative w-full h-full max-w-md md:h-auto ">
-         <!-- Modal content -->
-         <div class="relative bg-white rounded-lg shadow">
-             <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal{{$item->id}}">
-                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                 <span class="sr-only">Close modal</span>
-             </button>
-             <div class="px-6 py-6 lg:px-8">
-                 <h6 class="mb-4 text-xl font-medium text-gray-900 ">Change activity status of  <strong class="text-green-400">{{$item->act_name}}</strong></h6>
-                 <form class="space-y-6" method="POST" action="{{ route('activities.status') }}" enctype="multipart/form-data">
-                  @csrf
-                 <div>
-                  Current:  @foreach($status as $statuses)
-          @if($item->id == $statuses->acti_id)
-            {{$statuses->status}}
+                        <!-- Modal toggle -->
+                        
+                        {{-- <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                           Add
+                         </button> --}}
+                        
+                         <!-- Main modal -->
+                         <div id="authentication-modal{{$item->id}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+                             <div class="relative w-full h-full max-w-md md:h-auto ">
+                                 <!-- Modal content -->
+                                 <div class="relative bg-white rounded-lg shadow">
+                                     <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal{{$item->id}}">
+                                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                         <span class="sr-only">Close modal</span>
+                                     </button>
+                                     <div class="px-6 py-6 lg:px-8">
+                                         <h6 class="mb-4 text-xl font-medium text-gray-900 ">Change activity status of  <strong class="text-green-400">{{$item->act_name}}</strong></h6>
+                                         <form class="space-y-6" method="POST" action="{{ route('activities.status') }}" enctype="multipart/form-data">
+                                          @csrf
+                                         <div>
+                                          Current:  @foreach($status as $statuses)
+                                  @if($item->id == $statuses->acti_id)
+                                    {{$statuses->status}}
+                                  @endif
+                                 @endforeach
+                                         </div>
+                                         <input type="hidden" name="acti_id" value="{{$item->id}}">
+                                         change to:
+                                         <select name="status" id="statusSelect{{$item->id}}" class="rounded shadow m-2 mb-2 " required onchange="toggleFileInput{{$item->id}}()">
+                                          <option value=""></option>
+                                          <option value="on going">on going</option>
+                                          <option value="completed">completed</option>
+                                          <option value="cancelled">cancelled</option>
+                                         </select>
+                                         <br> <br>
+                                         <label for=""> You may upload pictures of the event if it is completed</label>
+                                         <br>
+                                         <input name="event_photos[]" type="file" id="pictureInput{{$item->id}}" style="display: none;" accept="image/*" multiple>
+                                         <br>
+                                          <script>
+                                            function toggleFileInput{{$item->id}}() {
+                          var selectElement{{$item->id}} = document.getElementById("statusSelect{{$item->id}}");
+                          var fileInput{{$item->id}} = document.getElementById("pictureInput{{$item->id}}");
+                        
+                          if (selectElement{{$item->id}}.value === "completed") {
+                            fileInput{{$item->id}}.style.display = "block";
+                          } else {
+                            fileInput{{$item->id}}.style.display = "none";
+                          }
+                        }
+                        
+                                          </script>
+                                         <br>
+                                             <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update status</button>
+                                           
+                                         </form>
+                                     </div>
+                                 </div>
+                                
+                                 
+                             </div>
+                            
+                         </div> 
+                         
+                                                {{-- end for modal for status of environmental activities --}}
+                                     
+                               <tr>
+                                {{-- <td class="sticky inset-y-0 left-0 bg-white px-4 py-2">
+                                  <label class="sr-only" for="Row1">Row 1</label>
+                        
+                                  <input
+                                    class="h-5 w-5 rounded border-gray-200"
+                                    type="checkbox"
+                                    id="Row1"
+                                  />
+                                </td> --}}
+                                <td class=" px-4 py-2 font-medium text-gray-900">
+                                  {{$item->act_date}}
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                                  {{$item->acti_time}}
+                                </td>
+                                <td class="px-4 py-2 text-gray-700">
+                                  {{$item->act_name}}
+                                </td>
+                                <td class="px-4 py-2 text-gray-700" style="width:8em;">
+                                
+                                 <strong
+                                  class="rounded bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-700 cursor-pointer ml-1" data-modal-target="authentication-modal{{$item->id}}" data-modal-toggle="authentication-modal{{$item->id}}"
+                                >
+                               
+                                @foreach($status as $statuses)
+                                  @if($item->id == $statuses->acti_id)
+                                    {{$statuses->status}}
+                                  @endif
+                                 @endforeach
+                                
+                                </strong>
+                                
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                                  @php
+                                  $v_count=0;   
+                                 @endphp
+                                 @foreach ($volunteers as $v)
+                                 @if($v->activity_id==$item->id)
+                                 @php
+                                 $v_count++;
+                                 @endphp
+                                 @endif
+                                 @endforeach
+                                 {{$v_count}}
+                                </td>
+                                <td class=" px-4 py-2 text-gray-700">{{$item->act_desc}}</td>
+                                <td class="whitespace-nowrap px-4 py-2">
+                                  <strong
+                                    class="rounded  px-3 py-1.5 text-xs font-medium text-teal-700"
+                                  >
+                                    {{$item->act_category}}
+                                  </strong>
+                                </td>
+                                
+                                <td class="whitespace-nowrap px-4 py-2">
+                                
+                           
+                                
+                                 <form action="/activity_edit/{{$item->id}}" method="post" class="p-0 m-0 text-blue-700">
+                                  @csrf
+                                  <input type="hidden" name="act_id_btch" value="{{$item->id}}">
+                                  <div class="flex flex-col items-center">
+                                  <strong
+                                  class="rounded bg-green-100 px-3 py-1.5 text-xs font-medium text-green-700 cursor-pointer mr-1" 
+                                >
+                                <a href="/activity_view/{{$item->id}}">view</a> 
+                                </strong>
+                        
+                                  <button type="submit">edit</button>
+                        
+                                  <strong
+                                  class="rounded bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700 cursor-pointer ml-1" data-modal-target="delete{{$item->id}}{{$item->act_date}}" data-modal-toggle="delete{{$item->id}}{{$item->act_date}}"
+                                >
+                                delete
+                                  
+                                </strong>
+                                  </div>
+                        
+                                
+                                </form>
+                                
+                               </td>
+                              </tr>
+                            
+                                {{-- modal for deleting environmental activities --}}
+                                                
+                        <!-- Modal toggle -->
+                        
+                        
+                        <!-- Main modal -->
+                        <div id="delete{{$item->id}}{{$item->act_date}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+                          <div class="relative w-full h-full max-w-md md:h-auto">
+                              <!-- Modal content -->
+                              <div class="relative bg-red-500 rounded-lg shadow">
+                                  <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="delete{{$item->id}}{{$item->act_date}}">
+                                      <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                      <span class="sr-only">Close modal</span>
+                                  </button>
+                                  <div class="px-6 py-6 lg:px-8">
+                                      <h3 class="mb-4 text-xl font-medium text-white ">DELETE ENVIRONMENTAL ACTIVITY?</h3>
+                                      <form class="space-y-6" method="POST" action="{{ route('delete_activity',$item->id) }}"  >
+                                       @csrf
+                                       <div class="text-white">Activity name: {{$item->act_name}}</div>
+                                        <h3> This action is irreversible</h3>
+                                       <input type="hidden" name="delete_activity" value="{{$item->id}}">
+                                      <br>
+                                          <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Delete Activity</button>
+                                        
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                        </div> 
+                        
+                                             {{-- end for modal for deleting environmental activities --}}
           @endif
-         @endforeach
-                 </div>
-                 <input type="hidden" name="acti_id" value="{{$item->id}}">
-                 change to:
-                 <select name="status" id="statusSelect{{$item->id}}" class="rounded shadow m-2 mb-2 " required onchange="toggleFileInput{{$item->id}}()">
-                  <option value=""></option>
-                  <option value="on going">on going</option>
-                  <option value="completed">completed</option>
-                  <option value="cancelled">cancelled</option>
-                 </select>
-                 <br> <br>
-                 <label for=""> You may upload pictures of the event if it is completed</label>
-                 <br>
-                 <input name="event_photos[]" type="file" id="pictureInput{{$item->id}}" style="display: none;" accept="image/*" multiple>
-                 <br>
-                  <script>
-                    function toggleFileInput{{$item->id}}() {
-  var selectElement{{$item->id}} = document.getElementById("statusSelect{{$item->id}}");
-  var fileInput{{$item->id}} = document.getElementById("pictureInput{{$item->id}}");
-
-  if (selectElement{{$item->id}}.value === "completed") {
-    fileInput{{$item->id}}.style.display = "block";
-  } else {
-    fileInput{{$item->id}}.style.display = "none";
-  }
-}
-
-                  </script>
-                 <br>
-                     <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update status</button>
-                   
-                 </form>
-             </div>
-         </div>
-        
-         
-     </div>
-    
- </div> 
- 
-                        {{-- end for modal for status of environmental activities --}}
-             
-       <tr>
-        {{-- <td class="sticky inset-y-0 left-0 bg-white px-4 py-2">
-          <label class="sr-only" for="Row1">Row 1</label>
-
-          <input
-            class="h-5 w-5 rounded border-gray-200"
-            type="checkbox"
-            id="Row1"
-          />
-        </td> --}}
-        <td class=" px-4 py-2 font-medium text-gray-900">
-          {{$item->act_date}}
-        </td>
-        <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-          {{$item->acti_time}}
-        </td>
-        <td class="px-4 py-2 text-gray-700">
-          {{$item->act_name}}
-        </td>
-        <td class="px-4 py-2 text-gray-700" style="width:8em;">
-        
-         <strong
-          class="rounded bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-700 cursor-pointer ml-1" data-modal-target="authentication-modal{{$item->id}}" data-modal-toggle="authentication-modal{{$item->id}}"
-        >
-       
-        @foreach($status as $statuses)
-          @if($item->id == $statuses->acti_id)
-            {{$statuses->status}}
-          @endif
-         @endforeach
-        
-        </strong>
-        
-        </td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-          @php
-          $v_count=0;   
-         @endphp
-         @foreach ($volunteers as $v)
-         @if($v->activity_id==$item->id)
-         @php
-         $v_count++;
-         @endphp
-         @endif
-         @endforeach
-         {{$v_count}}
-        </td>
-        <td class=" px-4 py-2 text-gray-700">{{$item->act_desc}}</td>
-        <td class="whitespace-nowrap px-4 py-2">
-          <strong
-            class="rounded  px-3 py-1.5 text-xs font-medium text-teal-700"
-          >
-            {{$item->act_category}}
-          </strong>
-        </td>
-        
-        <td class="whitespace-nowrap px-4 py-2">
-        
-   
-        
-         <form action="/activity_edit/{{$item->id}}" method="post" class="p-0 m-0 text-blue-700">
-          @csrf
-          <input type="hidden" name="act_id_btch" value="{{$item->id}}">
-          <div class="flex flex-col items-center">
-          <strong
-          class="rounded bg-green-100 px-3 py-1.5 text-xs font-medium text-green-700 cursor-pointer mr-1" 
-        >
-        <a href="/activity_view/{{$item->id}}">view</a> 
-        </strong>
-
-          <button type="submit">edit</button>
-
-          <strong
-          class="rounded bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700 cursor-pointer ml-1" data-modal-target="delete{{$item->id}}{{$item->act_date}}" data-modal-toggle="delete{{$item->id}}{{$item->act_date}}"
-        >
-        delete
           
-        </strong>
-          </div>
-
-        
-        </form>
-        
-       </td>
-      </tr>
-    
-        {{-- modal for deleting environmental activities --}}
-                        
-<!-- Modal toggle -->
-
-
-<!-- Main modal -->
-<div id="delete{{$item->id}}{{$item->act_date}}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
-  <div class="relative w-full h-full max-w-md md:h-auto">
-      <!-- Modal content -->
-      <div class="relative bg-red-500 rounded-lg shadow">
-          <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="delete{{$item->id}}{{$item->act_date}}">
-              <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-              <span class="sr-only">Close modal</span>
-          </button>
-          <div class="px-6 py-6 lg:px-8">
-              <h3 class="mb-4 text-xl font-medium text-white ">DELETE ENVIRONMENTAL ACTIVITY?</h3>
-              <form class="space-y-6" method="POST" action="{{ route('delete_activity',$item->id) }}"  >
-               @csrf
-               <div class="text-white">Activity name: {{$item->act_name}}</div>
-                <h3> This action is irreversible</h3>
-               <input type="hidden" name="delete_activity" value="{{$item->id}}">
-              <br>
-                  <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Delete Activity</button>
-                
-              </form>
-          </div>
-      </div>
-  </div>
-</div> 
-
-                     {{-- end for modal for deleting environmental activities --}}
+          @endif
+         @endforeach
+      
        @endforeach
        
      </tbody>
    </table>
   
  </div>
- {{$env_act->links()}}
+
                    </div>
                     
                 </div>
