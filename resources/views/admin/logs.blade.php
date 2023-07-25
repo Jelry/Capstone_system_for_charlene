@@ -110,7 +110,10 @@
                    {{$users->name}}
                 </td>
                 <td class="px-6 py-4 cursor-pointer">
-                <img src="{{ asset('storage/photos/'.$users->photo) }}" alt="{{ $users->photo }}" width="100" height="100" data-modal-target="popup-modal{{$users->id}}" data-modal-toggle="popup-modal{{$users->id}}">
+                <div style="width:200px; height: 200px; overflow: hidden;">
+                <img src="{{ asset('storage/photos/'.$users->photo) }}" alt="{{ $users->photo }}" style="width: 100%; height: auto; object-fit: cover;" data-modal-target="popup-modal{{$users->id}}" data-modal-toggle="popup-modal{{$users->id}}">
+                </div>
+               
                 </td>
             </tr>
             <!-- start modal for showing image  -->

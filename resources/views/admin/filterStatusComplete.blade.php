@@ -81,7 +81,7 @@
                        <div>
                       
                         Filter by
-                        <select name="filter" id="filter" class="rounded focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center" required  >
+                        <select name="filter" id="filter" class="rounded focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-left" required  >
   <option value=""></option>
   <option value="name">Name</option>
   <option value="category">Category</option>
@@ -399,19 +399,39 @@
                                   {{$item->act_name}}
                                 </td>
                                 <td class="px-4 py-2 text-gray-700" style="width:8em;">
-                                
-                                 <strong
-                                  class="rounded bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-700 cursor-pointer ml-1" data-modal-target="authentication-modal{{$item->id}}" data-modal-toggle="authentication-modal{{$item->id}}"
-                                >
                                
-                                @foreach($status as $statuses)
-                                  @if($item->id == $statuses->acti_id)
-                                    {{$statuses->status}}
-                                  @endif
-                                 @endforeach
-                                
-                                </strong>
-                                
+       
+       
+        @foreach($status as $statuses)
+          @if($item->id == $statuses->acti_id)
+          @if($statuses->status=='completed')
+          <strong
+          class="rounded bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600 cursor-pointer ml-1" data-modal-target="authentication-modal{{$item->id}}" data-modal-toggle="authentication-modal{{$item->id}}"
+        >
+        {{$statuses->status}}
+  </strong>
+          @endif
+          @if($statuses->status=='on going')
+          <strong
+          class="rounded bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-600 cursor-pointer ml-1" data-modal-target="authentication-modal{{$item->id}}" data-modal-toggle="authentication-modal{{$item->id}}"
+        >
+        {{$statuses->status}}
+  </strong>
+          @endif
+          @if($statuses->status=='cancelled')
+          <strong
+          class="rounded bg-red-100 px-3 py-1.5 text-xs font-medium text-red-600 cursor-pointer ml-1" data-modal-target="authentication-modal{{$item->id}}" data-modal-toggle="authentication-modal{{$item->id}}"
+        >
+        {{$statuses->status}}
+  </strong>
+          @endif
+        
+            
+          @endif
+         @endforeach
+        
+      
+        
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-2 text-gray-700">
                                   @php

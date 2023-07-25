@@ -206,12 +206,30 @@
              <h1>Point person phone number (Enter your number if you are the point person)</h1>
              <br>
              <input
-                type="number"
+                type="text"
                 id="point_person_phone_number"
                 name="point_person_phone_number"
                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 required
+                style="appearance: none; -moz-appearance: textfield;"
               />
+              <script>
+                // Get the input field element
+const inputField = document.getElementById('point_person_phone_number');
+
+// Add an input event listener to the input field
+inputField.addEventListener('input', function(event) {
+  // Get the current input value
+  const inputValue = event.target.value;
+
+  // Remove any non-numeric characters from the input
+  const numericValue = inputValue.replace(/[^0-9]/g, '');
+
+  // Update the input field value to allow only numbers
+  event.target.value = numericValue;
+});
+
+              </script>
               <script>
                 $("#point_person_phone_number").on("input", function() {
     if (/^0/.test(this.value)) {
@@ -276,13 +294,31 @@
               </label>
   
               <input
-                type="number"
+                type="text"
                 id="Phone_number"
                 name="phone_number"
                 class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                 required
                 placeholder=""
+                style="appearance: textfield; -moz-appearance: textfield; -webkit-appearance: none;"
               />
+              <script>
+                // Get the input field element
+const inputField = document.getElementById('Phone_number');
+
+// Add an input event listener to the input field
+inputField.addEventListener('input', function(event) {
+  // Get the current input value
+  const inputValue = event.target.value;
+
+  // Remove any non-numeric characters from the input
+  const numericValue = inputValue.replace(/[^0-9]/g, '');
+
+  // Update the input field value to allow only numbers
+  event.target.value = numericValue;
+});
+
+              </script>
             <script>
               $("#Phone_number").on("input", function() {
   if (/^0/.test(this.value)) {
