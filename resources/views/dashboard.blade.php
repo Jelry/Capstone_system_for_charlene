@@ -31,6 +31,7 @@
 
       <p class="mt-1 text-xs font-medium text-teal-600">Event Date: {{$item->act_date}}</p>
       <p class="mt-1 text-xs font-medium text-teal-600">Event Time: {{$item->acti_time}}</p>
+      <p class="mt-1 text-xs font-medium text-teal-600">Priority Level: {{$item->priority_level}}</p>
     </div>
 
     <div class="ml-3 hidden flex-shrink-0 sm:block">
@@ -80,6 +81,7 @@
         </dd>
         <dt class="text-sm font-medium text-green-700">Volunteers</dt>
       </div>
+      
       <div class="col-span-3 flex justify-end">
         <a
         class="group relative inline-block overflow-hidden border border-indigo-600 px-4 py-1 focus:outline-none focus:ring"

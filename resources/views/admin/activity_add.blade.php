@@ -124,6 +124,14 @@
                     <!--<input type="text" name="activity_description" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Description of environmental activity" required>-->
                     <textarea name="activity_description" cols="30" rows="5" required placeholder="Description of environmental activity"></textarea>
                     </div>
+                    <div>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Priority Level</label>
+                  <select name="priority_level" id="" required class="shadow rounded">
+                     <option value="casual" selected>Casual</option>
+                     <option value="important">Important</option>
+                     <option value="top priority">Top priority</option>
+                  </select>
+                    </div>
                     <div class="max-w-sm">
                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Photo (optional)</label>
                            <img src="#" alt="Selected Image" id="previewImage" style="display: none; max-width: 200px; max-height: 200px;">

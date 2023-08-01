@@ -22,7 +22,7 @@ class HomeController extends Controller
             return view('dashboard',[
                 'env_act_category' =>DB::table('env_acti_categories')
                 ->where('user_id','=',Auth::id())->get(),'env_act' =>DB::table('environmental__activities')
-                ->where('created_at','LIKE','%'."0".'%')->orderBy('created_at', 'desc')->get(),'volunteers' =>DB::table('join_activities')
+                ->where('created_at','LIKE','%'."0".'%')->orderBy('priority_level', 'desc')->orderBy('created_at', 'desc')->get(),'volunteers' =>DB::table('join_activities')
                 ->where('created_at','LIKE','%'."0".'%')->get(),'status'=>DB::table('activity_statuses')->where('created_at','like','%0%')->get()
        ]);
         }

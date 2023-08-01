@@ -128,6 +128,15 @@
                     <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Description</label>
                     <input type="text" name="activity_description" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " value="{{$env_act->act_desc}}" required>
                     </div>
+                    <div>
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Priority Level</label>
+                  <select name="priority_level" id="" required class="shadow rounded">
+                  <option value="{{$env_act->priority_level}}">Current: {{$env_act->priority_level}}</option>
+                     <option value="casual">Casual</option>
+                     <option value="important">Important</option>
+                     <option value="top priority">Top priority</option>
+                  </select>
+                    </div>
                     <!-- <div class="max-w-sm">
                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Activity Photo (optional)</label>
                            <img src="#" alt="Selected Image" id="previewImage" style="display: none; max-width: 200px; max-height: 200px;">

@@ -56,7 +56,7 @@ class EnvironmentalActivitiesController extends Controller
         $affected = DB::table('environmental__activities')
         ->where('id', $request->act_id)
         ->update(['act_name' => $request->activity_name, 'act_date' => $request->activity_date.' to '.$request->activity_date_end, 'act_category' => $request->activity_category, 'act_desc' => $request->activity_description, 
-        'latlang' => "-", 'lat' => $request->lat, 'lang' => $request->lang,'acti_time' => $request->activity_time,'photo'=>$request->image]);
+        'latlang' => "-", 'lat' => $request->lat, 'lang' => $request->lang,'acti_time' => $request->activity_time,'photo'=>$request->image,'priority_level'=>$request->priority_level]);
         return redirect(route('activities'));
     }
 
@@ -97,6 +97,7 @@ class EnvironmentalActivitiesController extends Controller
             'lang' => $request->lang,
             'acti_time' =>$request->activity_time,
             'photo' => $filenameToStore,
+            'priority_level' => $request->priority_level,
         ]);
         // $env_act = new Environmental_Activities();
         // $env_act->user_id = Auth::id();

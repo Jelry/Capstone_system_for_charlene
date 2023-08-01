@@ -430,7 +430,7 @@
       
         
         </td>
-        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+        <td class="px-4 py-2 text-gray-700">
           @php
           $v_count=0;   
          @endphp
@@ -443,7 +443,7 @@
          @endforeach
          {{$v_count}}
         </td>
-        <td class=" px-4 py-2 text-gray-700">{{$item->act_desc}}</td>
+        <td class="px-4 py-2 text-gray-700">{{$item->act_desc}}</td>
         <td class="whitespace-nowrap px-4 py-2">
           <strong
             class="rounded  px-3 py-1.5 text-xs font-medium text-teal-700"

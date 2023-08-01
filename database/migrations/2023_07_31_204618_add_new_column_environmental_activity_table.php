@@ -14,9 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('environmental__activities', function (Blueprint $table) {
-            $table->string('latlang')->nullable();
-            $table->string('lat');
-            $table->string('lang');
+            $table->string('priority_level')->nullable();
         });
     }
 
@@ -27,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('env__activities', function (Blueprint $table) {
+        Schema::table('environmental__activities', function (Blueprint $table) {
             //
         });
     }

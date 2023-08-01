@@ -123,7 +123,7 @@
                     </div>
                     <div>
                      <a
-                     href="{{route('activities')}}"
+                     href="activities/filterBy/status/completed"
                      class="group flex flex-col justify-between rounded-sm bg-white p-8 shadow-xl transition-shadow hover:shadow-lg"
                    >
                      <div>
