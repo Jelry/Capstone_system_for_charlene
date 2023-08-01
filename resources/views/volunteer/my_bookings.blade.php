@@ -65,7 +65,7 @@
                     @if($actt->id==$indi_bookings->activity_id)
                     @foreach($status as $ss)
                     @if($ss->acti_id == $actt->id)
-                    @if($ss->status=='on going')
+                    @if($ss->status=='Open for registration')
  <!-- getting the date range -->
  @php 
                     $dateRange = $actt->act_date;
@@ -155,7 +155,7 @@ $activityDate = $firstDate;
                     @if($act->id==$org_bookings->activity_id)
                     @foreach($status as $s)
                     @if($s->acti_id == $act->id)
-                    @if($s->status=='on going')
+                    @if($s->status=='Open for registration')
  <!-- getting the date range -->
  @php 
                     $dateRange = $act->act_date;

@@ -13,7 +13,7 @@
           @foreach($env_act as $item)
                 @foreach($status as $s)
                   @if($item->id == $s->acti_id)
-                    @if($s->status == "on going")
+                    @if($s->status == "Open for registration")
                     <div
   
   class="relative block overflow-hidden rounded-lg border border-gray-100 p-8 bg-white shadow mb-4"

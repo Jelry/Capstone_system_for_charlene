@@ -97,7 +97,7 @@
     toggleSelectVisibility();
 </script>
 <select id="statusSelecttt" style="display: none;" class="rounded focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center">
-    <option value="ongoing">On going</option>
+    <option value="Open for registration">Open for registration</option>
     <option value="completed">Completed</option>
     <option value="cancelled">Cancelled</option>
 </select>
@@ -340,7 +340,7 @@
                  change to:
                  <select name="status" id="statusSelect{{$item->id}}" class="rounded shadow m-2 mb-2 " required onchange="toggleFileInput{{$item->id}}()">
                   <option value=""></option>
-                  <option value="on going">on going</option>
+                  <option value="Open for registration">Open for registration</option>
                   <option value="completed">completed</option>
                   <option value="cancelled">cancelled</option>
                  </select>
@@ -408,7 +408,7 @@
         {{$statuses->status}}
   </strong>
           @endif
-          @if($statuses->status=='on going')
+          @if($statuses->status=='Open for registration')
           <strong
           class="rounded bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-600 cursor-pointer ml-1" data-modal-target="authentication-modal{{$item->id}}" data-modal-toggle="authentication-modal{{$item->id}}"
         >
@@ -468,12 +468,20 @@
 
           <button type="submit">edit</button>
 
+          @foreach($status as $statusess)
+          @if($item->id == $statusess->acti_id)
+          @if($statusess->status=='completed')
+          @else 
           <strong
           class="rounded bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700 cursor-pointer ml-1" data-modal-target="delete{{$item->id}}{{$item->act_date}}" data-modal-toggle="delete{{$item->id}}{{$item->act_date}}"
         >
         delete
           
         </strong>
+          @endif 
+          @endif 
+          @endforeach
+        
           </div>
 
         

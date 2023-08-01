@@ -115,7 +115,7 @@ class EnvironmentalActivitiesController extends Controller
         $status = new activity_status();
         $env_acti_latest = Environmental_Activities::latest()->first();
         $status->acti_id = $env_acti_latest->id;
-        $status->status = "on going";
+        $status->status = "Open for registration";
         $status->save();
 
  
