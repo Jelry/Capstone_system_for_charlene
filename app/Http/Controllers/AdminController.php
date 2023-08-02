@@ -16,7 +16,7 @@ class AdminController extends Controller
     {
         return view('admin.filterStatusCancelled',[
             'env_act' =>DB::table('environmental__activities')
-            ->where('user_id','=',Auth::id())->orderBy('created_at', 'desc')->get(),  'env_cat' =>DB::table('env_acti_categories')
+            ->where('user_id','=',Auth::id())->orderBy('created_at', 'desc')->paginate(8),  'env_cat' =>DB::table('env_acti_categories')
             ->where('user_id','=',Auth::id())->get(),'volunteers' =>DB::table('join_activities')
             ->where('created_at','LIKE','%'."0".'%')->get(),'status'=>DB::table('activity_statuses')->where('created_at','like','%0%')->get()
    ]);
@@ -25,7 +25,7 @@ class AdminController extends Controller
     {
         return view('admin.filterStatusOngoing',[
             'env_act' =>DB::table('environmental__activities')
-            ->where('user_id','=',Auth::id())->orderBy('created_at', 'desc')->get(),  'env_cat' =>DB::table('env_acti_categories')
+            ->where('user_id','=',Auth::id())->orderBy('created_at', 'desc')->paginate(8),  'env_cat' =>DB::table('env_acti_categories')
             ->where('user_id','=',Auth::id())->get(),'volunteers' =>DB::table('join_activities')
             ->where('created_at','LIKE','%'."0".'%')->get(),'status'=>DB::table('activity_statuses')->where('created_at','like','%0%')->get()
    ]);
@@ -34,7 +34,7 @@ class AdminController extends Controller
     {
         return view('admin.filterStatusComplete',[
             'env_act' =>DB::table('environmental__activities')
-            ->where('user_id','=',Auth::id())->orderBy('created_at', 'desc')->get(),  'env_cat' =>DB::table('env_acti_categories')
+            ->where('user_id','=',Auth::id())->orderBy('created_at', 'desc')->paginate(8),  'env_cat' =>DB::table('env_acti_categories')
             ->where('user_id','=',Auth::id())->get(),'volunteers' =>DB::table('join_activities')
             ->where('created_at','LIKE','%'."0".'%')->get(),'status'=>DB::table('activity_statuses')->where('created_at','like','%0%')->get()
    ]);

@@ -76,9 +76,9 @@
                 <div class="p-6 text-gray-900 grid grid-cols-1 lg:grid-cols-3 gap-3">
                    <div class="col-span-3">
                     
-                     <div class="flex mb-4 justify-between">
+                     <!-- <div class="flex mb-4 justify-between">
                      <a href="{{route('activity_add')}}" type="button"  class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</a>
-                       <div>
+                       <div> -->
                       
                         Filter by
                         <select name="filter" id="filter" class="rounded focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-left" required  >
@@ -97,7 +97,7 @@
     toggleSelectVisibility();
 </script>
 <select id="statusSelecttt" style="display: none;" class="rounded focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1.5 text-center">
-    <option value="Open for registration">Open for registration</option>
+    <option value="Openforregistration">Open for registration</option>
     <option value="completed">Completed</option>
     <option value="cancelled">Cancelled</option>
 </select>
@@ -532,7 +532,7 @@
        
      </tbody>
    </table>
-  
+  {{$env_act->links()}}
  </div>
 
                    </div>

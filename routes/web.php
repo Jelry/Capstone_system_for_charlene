@@ -41,7 +41,7 @@ Route::get('/volunteers/filterBy/{name}',[AdminController::class,'volunteerSort'
 Route::get('/activities/filterBy/category/desc',[AdminController::class,'activitiesFilterByCategoryDesc'])->middleware(['auth','verified','isAdmin'])->name('filterByCategory');
 Route::get('/activities/filterBy/category/asc',[AdminController::class,'activitiesFilterByCategoryAsc'])->middleware(['auth','verified','isAdmin'])->name('filterByCategory');
 Route::get('/activities/filterBy/status/completed',[AdminController::class,'activitiesFilterByStatusCompleted'])->middleware(['auth','verified','isAdmin']);
-Route::get('/activities/filterBy/status/ongoing',[AdminController::class,'activitiesFilterByStatusOngoing'])->middleware(['auth','verified','isAdmin']);
+Route::get('/activities/filterBy/status/Openforregistration',[AdminController::class,'activitiesFilterByStatusOngoing'])->middleware(['auth','verified','isAdmin']);
 Route::get('/activities/filterBy/status/cancelled',[AdminController::class,'activitiesFilterByStatusCancelled'])->middleware(['auth','verified','isAdmin']);
 Route::post('/change_status',[AdminController::class,'status_change'])->middleware(['auth','verified','isAdmin'])->name('activities.status');
 
