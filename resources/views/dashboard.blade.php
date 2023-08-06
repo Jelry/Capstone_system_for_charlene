@@ -31,9 +31,24 @@
 
       <p class="mt-1 text-xs font-medium text-teal-600">Event Date: {{$item->act_date}}</p>
       <p class="mt-1 text-xs font-medium text-teal-600">Event Time: {{$item->acti_time}}</p>
-      <p class="mt-1 text-xs font-medium text-teal-600">Priority Level: {{$item->priority_level}}</p>
+      <p class="mt-1 text-xs font-medium text-teal-600">Priority Level:  <span id="priorityLevel{{$item->id}}">{{$item->priority_level}}</span></p>
     </div>
+    <script>
+  // Get the span element by its id
+var prioritySpan = document.getElementById("priorityLevel{{$item->id}}");
 
+// Check if the element exists
+if (prioritySpan) {
+  // Get the current text content of the span
+  var originalText = prioritySpan.textContent;
+
+  // Capitalize the first letter and concatenate the rest of the text
+  var capitalizedText = originalText.charAt(0).toUpperCase() + originalText.slice(1);
+
+  // Update the text content of the span
+  prioritySpan.textContent = capitalizedText;
+}
+</script>
     <div class="ml-3 hidden flex-shrink-0 sm:block">
       <!-- <img
         alt="error image"
